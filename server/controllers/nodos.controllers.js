@@ -20,6 +20,7 @@ export const getNodo = async (req, res) => {
     
     [
       req.params.id,
+      
     ]);
 
     if (result.length === 0)
@@ -203,10 +204,13 @@ export const updateNodo = async (req, res) => {
   }
 };
 
+//Tenemos que enviar los parametro de la siguiente forma: http://localhost:4000/nodos/37?idRegiones=1
+//TODO: Tengo que revisar como envar el parametro ?idRegiones
 export const deleteNodo = async (req, res) => {
   try {
-    const [result] = await pool.query("DELETE NODOS NODOS WHERE idNodo = ?", [
+    const [result] = await pool.query("DELETE FROM NODOS WHERE idNodo = ? AND idRegiones = ?", [
       req.params.id,
+      req.query.idRegiones,
     ]);
 
     if (result.affectedRows === 0)

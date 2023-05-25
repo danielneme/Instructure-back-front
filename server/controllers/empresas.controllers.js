@@ -3,8 +3,11 @@ import { pool } from "../db.js";
 export const getEmpresas = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "SELECT e.*, r.idregion, r.nombre AS region_nombre FROM EMPRESAS e JOIN REGIONES_x_EMPRESAS re ON e.cuit = re.EMPRESAS_cuit JOIN REGIONES r ON re.REGIONES_idregion = r.idregion ORDER BY nombre ASC"
-    );
+     // "SELECT e.*, r.idregion, r.nombre AS region_nombre FROM EMPRESAS e JOIN REGIONES_x_EMPRESAS re ON e.cuit = re.EMPRESAS_cuit JOIN REGIONES r ON re.REGIONES_idregion = r.idregion ORDER BY nombre ASC"
+     " SELECT e.*, GROUP_CONCAT(r.idregion) AS idregiones, GROUP_CONCAT(r.nombre) AS nombre_regiones FROM EMPRESAS e JOIN REGIONES_x_EMPRESAS re ON e.cuit = re.EMPRESAS_cuit JOIN REGIONES r ON re.REGIONES_idregion = r.idregion GROUP BY e.cuit ORDER BY e.nombre ASC"
+
+   
+      );
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -96,7 +99,7 @@ export const updateEmpresa = async (req, res) => {
     res.json(result1);
     res.json(result2);
   } catch (error) {
-    if (result.affectedRows === 0)
+    if (result1.affectedRows === 0)
       return res.status(404).json({ message: "Empresa no encontrada" });
 
     return res.status(500).json({ message: error.message });

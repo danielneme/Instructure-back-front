@@ -1,0 +1,15 @@
+INSERT INTO `instructuredb`.`REGIONES` (`idregion`, `nombre`) VALUES ('001', 'Centro');
+
+INSERT INTO `instructuredb`.`EMPRESAS` (`nombre`, `cuit`, `telefono`, `correo`, `tipo`,`direccion`, `provincia`, `ciudad`, `codigoPostal`) VALUES ('CIRION TECHNOLOGIES', '30626747171', '3516250938', 'soporte@ciriontechnologies.com.ar', 'Av. Velez Sarsfield 4445', 'Cordoba', 'Cordoba', '5000');
+
+
+SELECT * FROM instructuredb.REGIONES;
+
+UPDATE `instructuredb`.`EMPRESAS` SET `direccion` = 'Gorriti 645', `provincia` = 'Cordoba', `ciudad` = 'Villa Allende' WHERE (`cuit` = '60578921356');
+
+INSERT INTO `instructuredb`.`PERSONAS` (`username`, `email`, `password`, `dni`, `telefono`, `tipo_persona`, `empresa`) VALUES ('dgomez', 'daniel.gomez15@ciriontechnologies.com', '12341234', '31730963', '3513452180', '3', '30626747171');
+
+INSERT INTO `instructuredb`.`REGIONES_x_EMPRESAS` (`idregiones_x_empresas`, `EMPRESAS_cuit`, `REGIONES_idregion`) VALUES ('101', '60578921356', '1');
+
+
+INSERT INTO `instructuredb`.`HVACS` (`idhvac`, `marca`, `capacidad`, `filtros`, `cant_filtros`, `cant_compresores`, `garantia`) VALUES ('104', 'Vertiv', '7', 'ZP500', '6', '2', '12');

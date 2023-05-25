@@ -1,0 +1,27 @@
+formatear el codigo con prittier
+
+alt + shift + f PARA DAR FORMATO
+
+
+
+Comando para crear BD En Docker:
+
+>docker run --name mymysql -e MYSQL_ROOT_PASSWORD=EFIP1 -e MYSQL_DATABASE=instructuredb -p 3306:3306 -d mysql
+
+
+MYSQL DB: instructuredb
+PASS: EFIP1
+
+Port: 3306
+
+
+Conectarse a la BD en Docker por consola:
+
+docker ps                         -> Muestra los contenedores en ejecucion.
+docker exec -it mymysql bash      -> se ejecuta una sesion del container de mysql en una psudo terminal (-i espera el input -t abre la terminal con el container mymysql y -bash es el lenguaje de la terminal )
+mysql -u root --password          -> nos logeamos en el entorno mysql 
+Ingresamos el password
+
+show databases;    ->muestra las DBs conectadas.
+use instructuredb;  -> ingresamos a nuestra db.
+show tables;        -> muestra nuestas tablas actualizadas.  
